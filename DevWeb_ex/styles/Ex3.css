@@ -1,0 +1,105 @@
+h1
+{
+    background-color: rgb(255, 210, 29);
+    text-align: center;
+    border-radius: 7px;
+    counter-reset: counter2;
+    place-self: center;
+    width: 70%;
+    transition: margin-top 1s;
+    transition: width 1s;
+}
+.div1
+{
+    display: none;          /**hide the div*/ 
+    width: 70%;
+    height: 500px;
+    padding-left:10%;
+    padding-right: 3%;
+    overflow-y:scroll;
+    border: solid ;
+    border-width: 3px;
+    border-color: rgb(16, 22, 139) ;
+}
+h1:hover + .div1
+{
+    display: grid;
+    place-self: center;
+}
+h1:hover
+{
+    box-shadow: 5px 5px 7px 3px black;
+    width: 90%;
+    margin-top: 30px;
+}
+
+h3
+{
+    color: rgb(110, 3, 3);
+    margin-bottom: 5px;
+    margin-top: 0px;
+    counter-reset: counter;
+}
+
+h3::before
+{  
+    color: black;
+    font-weight: 100;
+    counter-increment: counter2;
+    content: counter(counter2 ,upper-roman ) " . " ;
+}
+
+ul
+{
+    list-style-type: none;
+    list-style-position: inside;
+    margin-top: 0px;
+    padding-left: 0px;
+    margin-left: 30px;
+}
+
+.sub-title::before
+{
+    counter-increment: counter;
+    content: " " counter(counter2, upper-roman) " . " counter(counter) " ";
+}
+
+.sub-title
+{
+    counter-reset: counter3;
+}
+.sub-title2::before
+{
+    counter-increment: counter3;
+    content:" " counter(counter2, upper-roman) " . " counter(counter) " " "- " counter(counter3, lower-alpha) " . ";
+}
+
+h3:nth-of-type(3) + ul li:nth-child(1)
+{
+    background-color:aquamarine;
+    color: white;
+}
+
+div h3:nth-of-type(2) + ul li ul li:nth-child(1) ,
+div h3:nth-of-type(2) + ul li ul li:nth-child(4),
+
+div h3:nth-of-type(3) + ul li ul li:nth-child(1), 
+div h3:nth-of-type(3) + ul li ul li:nth-child(3),
+
+div h3:nth-of-type(5) + ul li ul li:nth-child(1),
+div h3:nth-of-type(5) + ul li ul li:nth-child(4)
+{
+    background-color:rgb(19, 120, 125);
+    color: white;
+}
+
+div h3:nth-of-type(4) + ul li ul li:nth-child(1)
+{
+    background-color: rgb(240, 69, 39);
+    color: white;
+}
+.span1
+{
+    color: white;
+    background-color: rgb(139, 159, 43);
+}
