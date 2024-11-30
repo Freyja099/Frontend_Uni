@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> English : Irregular Verbs </title>
+        <meta charset="UTF-8">
+        <link rel = "stylesheet" href = "Devoir.css">
+        <script src = "Devoir.js"></script>
+    </head>
+    
+    <body>
+        <!-- ! Header always exist -->
+        <div id = "header">
+            <div id = "header_left">
+                <span 
+                class="toggle" 
+                onclick ="swapDivs()"> 
+                    &#9664; 
+                </span>
+
+                <span 
+                class="toggle" 
+                onclick = "swapDivs()"> 
+                    &#9654; 
+            </span>
+            </div>
+
+            <div id="header_right">
+                English : Irregular Verbs
+            </div>
+        </div>
+<div class="big_div">
+        <!-- ! The page that contains the verbs -->
+        <div id = "containerLeft" class="container">
+            <div id = "left_container">
+                <table id = "verbs_table">
+                    <tr>
+                        <thead>
+                            <tr>
+                            <th>Base form</th>
+                            <th>Past tense</th>
+                            <th>Past Participle</th>
+                            <th>Translation</th>
+                            <th> </th> 
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+
+                        </tbody>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ! The right Panel -->
+        <div  class="container" id="containerRight">
+            
+            <div class ="panel_margin" onclick = "hideRightContainer()">
+                <span class = "toggle_right_panel">&#9654;</span>
+            </div>
+
+            <div class="main_page_panel">
+                <div id="buttonsRightPanel">
+                    <button 
+                    style="cursor: pointer;"
+                    onclick = "addVerb()"
+                    >Add a Verb</button>
+                    <input type="text" id="verbToFind" placeholder="Verb to find">
+                    <button
+                    style="cursor: pointer;"
+                    onclick ="findVerb()"
+                    >Find</button>
+                </div>
+
+                <div>
+                    <div id = "letterLinks">
+                        
+                    </div>
+
+                    <div class="statistics_title"> Statistics </div>
+
+                    <div id = "statistics">
+                        
+                    </div>   
+                </div>
+                 
+            </div>
+            
+        </div>
+    
+</div>
+
+    </body>
+
+</html>

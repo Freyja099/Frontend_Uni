@@ -1,0 +1,186 @@
+
+/* *Header */
+
+#header
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgb(168, 233, 253);
+    border: 4px solid black;
+    height: 100px;
+    align-items: center;
+}
+#header_right
+{
+    color: red;
+    font-weight: bold;
+    font-size: xx-large;
+    margin-right: 30px;
+    padding-top: 30px;
+}
+#header_left
+{
+    margin-left: 30px;
+    padding-top: 30px;
+}
+.toggle
+{
+    color: red;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+/* *Big Div*/
+
+.big_div
+{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+/* *Left Div*/
+
+.container
+{
+    display: inline-block;
+    overflow-y : scroll;
+    border : 4px solid black;
+    margin-top: 20px;
+    vertical-align: top;
+    height : 540px;
+}
+
+#left_container
+{
+    display: grid;
+    grid-template-columns: auto;
+    text-align: left;
+}
+
+#verbs_table th 
+{
+    background-color: aquamarine;
+    padding: 5px;
+}
+
+tbody td
+{
+    border:1px solid rgb(186, 177, 177);
+    /*box-shadow: 1px 1px 1px 0px black;*/
+}
+tbody tr:nth-child(odd)
+{
+    background-color: rgb(253, 230, 198);
+}
+
+.actionCellContainer
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    padding: 3px;
+    margin-right: 0px;
+}
+
+.actionCellContainer button
+{
+    margin: 0px 6px;
+    cursor: pointer;
+}
+
+/* Override the odd row background for search results */
+tbody tr:nth-child(odd).search-result {
+    background-color: #90EE90 !important;
+}
+
+#verbs_table
+{
+    width: 100%;
+}
+
+/* *Right Div */
+
+.panel_margin
+{
+    background-color: rgb(168, 233, 253);
+    height: 100%;
+    width: 5%;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+#containerRight
+{
+    display: flex;
+    margin-left: 12px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.toggle_right_panel
+{
+    font-size:25px;
+    cursor: pointer;
+}
+.main_page_panel
+{
+    display: block;
+    justify-items: center;
+}
+#buttonsRightPanel
+{
+    margin: 20px 0px;
+    cursor : pointer;
+}
+#verbToFind
+{
+    margin-right: 15px;
+    margin-left: 15px;
+}
+#letterLinks
+{
+    border: 2px solid rgb(176, 171, 171);
+    border-style: dotted;
+    padding: 160px;
+    overflow-y: scroll;
+    width: 50%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+#letterLinks a
+{
+    margin: 20px;
+    text-decoration: none;
+}
+
+
+.search-result {
+    background-color: #90EE90 !important; 
+    transition: background-color 0.3s;
+}
+
+#statistics
+{
+    margin-top: 20px;
+}
+
+#statistics div {
+    background-color: rgb(168, 233, 253);
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-weight: 500px;
+    margin-bottom: 10px;
+}
+.statistics_title
+{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
