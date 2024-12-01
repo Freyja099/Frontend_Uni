@@ -88,8 +88,6 @@ tbody tr:nth-child(odd)
     margin: 0px 6px;
     cursor: pointer;
 }
-
-/* Override the odd row background for search results */
 tbody tr:nth-child(odd).search-result {
     background-color: #90EE90 !important;
 }
@@ -161,6 +159,19 @@ tbody tr:nth-child(odd).search-result {
 .search-result {
     background-color: #90EE90 !important; 
     transition: background-color 0.3s;
+}
+
+.letter-highlight {
+    background-color: #FF9999 !important; 
+    transition: background-color 0.3s;
+}
+
+tbody tr:nth-child(odd).search-result {
+    background-color: #90EE90 !important;
+}
+
+tbody tr:nth-child(odd).letter-highlight {
+    background-color: #FF9999 !important;
 }
 
 #statistics
