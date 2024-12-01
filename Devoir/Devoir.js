@@ -51,7 +51,7 @@ function displayTable()
     const tbody = document.getElementById("verbs_table").getElementsByTagName("tbody")[0];
     tbody.innerHTML = ''; // * Clear the table first
 
-    verbs.slice(1).forEach((verb, index) => 
+    verbs.slice(0).forEach((verb, index) => 
         {
         const row = document.createElement("tr");
         
@@ -89,7 +89,7 @@ function hideRightContainer()
     if (rightContainerFunction.style.display === "none" || !rightContainerFunction.style.display) 
     {
         rightContainerFunction.style.display = "block";
-        leftContainer.style.gridTemplateColumns = "auto";
+        //leftContainer.style.gridTemplateColumns = "auto";
         rightDiv.style.borderWidth = "4px";
         panelMargin.style.width = "5%";
         arrow.innerHTML = "&#9654;"; // Right arrow (▶)
@@ -97,9 +97,9 @@ function hideRightContainer()
     else 
     {
         rightContainerFunction.style.display = "none";
-        leftContainer.style.gridTemplateColumns = "1fr";
+        //leftContainer.style.gridTemplateColumns = "1fr";
         rightDiv.style.borderWidth = "0px";
-        panelMargin.style.width = "100%";
+        panelMargin.style.width = "10%";
         arrow.innerHTML = "&#9664;"; // Left arrow (◀)
     }
 }
@@ -138,8 +138,8 @@ function generateLetterLinks()
     const letters = new Set();
     const letterCounts = {};
     
-    verbs.slice(1).forEach(verb => 
-        {
+    verbs.slice(0).forEach(verb => 
+    {
         if (verb[0]) 
         {
             const firstLetter = verb[0].charAt(0).toLowerCase();
@@ -156,7 +156,7 @@ function generateLetterLinks()
 
     // * Create and append links for each letter
     Array.from(letters).sort().forEach(letter => 
-{
+    {
         const linkContainer = document.createElement('div');
         linkContainer.style.whiteSpace = 'nowrap'; // * Prevent line breaks
         
@@ -176,21 +176,20 @@ function generateLetterLinks()
         {
             e.preventDefault();
             
-            // * Remove highlight from all rows
-            document.querySelectorAll('#verbs_table tbody tr').forEach(row => 
-            {
+            // Remove highlight from all rows
+            document.querySelectorAll('#verbs_table tbody tr').forEach(row => {
                 row.classList.remove('highlighted');
+                row.classList.remove('search-result');
+                row.classList.remove('letter-highlight');
             });
             
-            // * Find and scroll to the matching verb
+            // Find and scroll to the matching verb
             const rows = document.querySelectorAll('#verbs_table tbody tr');
-            for (let row of rows) 
-            {
+            for (let row of rows) {
                 const firstCell = row.querySelector('td');
-                if (firstCell && firstCell.textContent.toLowerCase().startsWith(letter)) 
-                {
+                if (firstCell && firstCell.textContent.toLowerCase().startsWith(letter)) {
                     row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    row.classList.add('highlighted');
+                    row.classList.add('letter-highlight');
                     break;
                 }
             }
@@ -209,7 +208,7 @@ function statisticsContainer() {
     
     // * Create letter counts object
     const letterCounts = {};
-    verbs.slice(1).forEach(verb => 
+    verbs.slice(0).forEach(verb => 
     {
         if (verb[0]) 
         {
@@ -291,51 +290,51 @@ function updateVerb(index)
     const tbody = document.querySelector('#verbs_table tbody');
     const row = tbody.children[index];
     const cells = row.querySelectorAll('td');
-    const newValues = [];
 
-    if (!validateInputs(cells)) 
-    {
+    if (!validateInputs(cells)) {
         return;
     }
     
-    // * Get values from input fields
-    for (let i = 0; i < cells.length - 1; i++) 
-    {
+    const newValues = [];
+    
+    // Get values from input fields
+    for (let i = 0; i < cells.length - 1; i++) {
         const input = cells[i].querySelector('input');
-        const value = input ? input.value : cells[i].textContent.trim();
+        const value = input ? input.value.trim() : cells[i].textContent.trim();
         newValues.push(value);
-        cells[i].textContent = value; // * Convert back to text
     }
     
-    // * Update the verbs array
-    verbs[index + 1] = newValues;
+    // Remove old entry if updating existing verb
+    if (index < verbs.length) {
+        verbs.splice(index, 1);
+    }
     
-    // * Keep both buttons visible
-    const actionCell = cells[cells.length - 1];
-    actionCell.querySelector('button:nth-child(1)').style.display = 'block'; // * Edit button
-    actionCell.querySelector('button:nth-child(2)').style.display = 'block'; // * Update button
+    // Add the new verb
+    verbs.push(newValues);
     
-    statisticsContainer(); // * Update statistics after modification
+    // Sort verbs array alphabetically
+    verbs.sort((a, b) => a[0].toLowerCase().localeCompare(b[0].toLowerCase()));
+    
+    // Redisplay the entire table
+    displayTable();
+    
+    // Update letter links and statistics
+    generateLetterLinks();
+    statisticsContainer();
 }
 
-function deleteVerb(index) 
-{
-    if (confirm('Are you sure you want to delete this verb?')) 
-    {
-        // * Remove from verbs array
-        verbs.splice(index + 1, 1);
+function deleteVerb(index) {
+    if (confirm('Are you sure you want to delete this verb?')) {
+        // Remove from verbs array
+        verbs.splice(index, 1);
         
-        // * Remove the row directly from the table
+        // Remove the row directly from the table
         const tbody = document.querySelector('#verbs_table tbody');
         tbody.removeChild(tbody.children[index]);
         
-        // * Regenerate letter links
-        generateLetterLinks();
-        
-        // * Update onclick handlers for remaining rows
+        // Update onclick handlers for remaining rows
         const rows = tbody.children;
-        for (let i = 0; i < rows.length; i++) 
-        {
+        for (let i = 0; i < rows.length; i++) {
             const actionCell = rows[i].querySelector('.actionCellContainer');
             actionCell.innerHTML = `
                 <button onclick="editVerb(${i})">Edit</button>
@@ -344,8 +343,12 @@ function deleteVerb(index)
             `;
         }
         
+        // Redisplay the entire table to ensure consistency
+        displayTable();
+        
+        // Update letter links and statistics
         generateLetterLinks();
-        statisticsContainer(); // * Update statistics after deletion
+        statisticsContainer();
     }
 }
 
@@ -419,9 +422,3 @@ window.onload = function()
     statisticsContainer();
 };
 
-window.onload = function() 
-{
-    displayTable();
-    generateLetterLinks();
-    statisticsContainer();
-};
