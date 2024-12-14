@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="ex2.css">
+        <script src="ex2.js"></script>
+    </head>
+
+    <body>
+        <h2> Gestion d'une liste </h2>
+        <div>
+            <input type="text" placeholder="Nom de l'élement à ajouter" id ="addElement">
+            <input type="button" onclick="add()" value="Ajouter" >
+            <br>
+
+            <p> Ajout : </p>
+            <input type="radio" id="choix1" value="begin" name="choix">
+            <label for="choix1" > Au début </label>
+
+            <input type="radio" id="choix2" value="end" name="choix">
+            <label for="choix2" > A la fin </label>
+        </div>
+
+        <table id="table">
+            <tr>
+                <td>
+                    Element 1
+                </td>
+                <td>
+                    <input type="button" onclick="update()" value="Modifier">
+                </td>
+                <td>
+                    <input type="button" onclick="remove()" value="Supprimer"
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Element 2
+                </td>
+                <td>
+                    <input type="button" onclick="update()" value="Modifier">
+                </td>
+                <td>
+                    <input type="button" onclick="remove()" value="Supprimer"
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Element 3
+                </td>
+                <td>
+                    <input type="button" onclick="update()" value="Modifier">
+                </td>
+                <td>
+                    <input type="button" onclick="remove()" value="Supprimer"
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

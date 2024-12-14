@@ -1,0 +1,28 @@
+body
+{
+    border: 1px dotted black;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 300px;
+    overflow-y: scroll;
+}
+
+table
+{
+    padding: 20px;
+    margin:auto;
+    background-color: white;
+}
+
+tr:nth-child(odd) /* or 2n+1*/
+{ 
+    background-color:aliceblue;
+
+}
+
+input
+{
+    margin: 5px;
+}
